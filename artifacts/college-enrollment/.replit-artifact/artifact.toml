@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "College Enrollment"
+version = "1.0.0"
+id = "artifacts/college-enrollment"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20621
+
+[services.development]
+run = "pnpm --filter @workspace/college-enrollment run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/college-enrollment", "run", "build" ]
+publicDir = "artifacts/college-enrollment/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20621"
+BASE_PATH = "/"
