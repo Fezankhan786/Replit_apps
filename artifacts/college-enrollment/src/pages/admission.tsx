@@ -6,7 +6,8 @@ import * as z from "zod";
 import { 
   useSubmitApplication, 
   useListCourses, 
-  useGetProfile 
+  useGetProfile,
+  getGetProfileQueryKey,
 } from "@workspace/api-client-react";
 import { useUser } from "@clerk/react";
 import { useToast } from "@/hooks/use-toast";
@@ -48,7 +49,7 @@ export function Admission() {
   const { isSignedIn, user } = useUser();
 
   const { data: courses, isLoading: coursesLoading } = useListCourses({});
-  const { data: profile } = useGetProfile({ query: { enabled: isSignedIn } });
+  const { data: profile } = useGetProfile({ query: { queryKey: getGetProfileQueryKey(), enabled: !!isSignedIn } });
   const submitApplication = useSubmitApplication();
 
   const form = useForm<z.infer<typeof formSchema>>({
