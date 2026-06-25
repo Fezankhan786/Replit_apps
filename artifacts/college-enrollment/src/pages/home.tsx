@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Show } from "@clerk/react";
-import { ArrowRight, BookOpen, GraduationCap, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Download, GraduationCap, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Home() {
@@ -54,6 +54,20 @@ export function Home() {
                 </Button>
               </Link>
             </Show>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-6"
+          >
+            <a href={`${import.meta.env.BASE_URL}app.apk`} download="WestviewUniversity.apk">
+              <Button size="sm" variant="outline" className="bg-transparent text-primary-foreground border-primary-foreground/50 hover:bg-primary-foreground/10 gap-2">
+                <Download className="h-4 w-4" />
+                Download Android App
+              </Button>
+            </a>
           </motion.div>
         </div>
       </section>
